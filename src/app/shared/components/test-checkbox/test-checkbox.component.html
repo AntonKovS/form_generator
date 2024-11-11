@@ -1,0 +1,12 @@
+<section class="checkbox" *ngIf="field && field.id && field.choices.length > 0">
+  <div class="checkbox-label">{{field.label}}<span *ngIf="field.required">*</span></div>
+  <div class="checkbox-options"
+       [ngStyle]="{'border': (chBoxForm.get(fieldIdString + '/' + field.choices[0].value)?.invalid)
+        && chBoxForm.get(fieldIdString + '/' + field.choices[0].value)?.touched && field.required ? '1px solid red' : ''}">
+    <form class="checkbox-option" *ngFor="let option of field.choices; let i = index" [formGroup]="chBoxForm"
+          (click)="setValueInChoices(i)">
+      <input type="checkbox" id="checkbox-{{i}}" [checked]="option.checked" [value]="option.value">
+      <label for="{{option.value}}">{{option.option}}</label>
+    </form>
+  </div>
+</section>

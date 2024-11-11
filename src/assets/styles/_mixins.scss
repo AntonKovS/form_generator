@@ -1,0 +1,9 @@
+@import "variables";
+
+@mixin label {
+  width: 157px;
+  flex-shrink: 0;
+  span {
+    color: $error-text-color;
+  }
+}

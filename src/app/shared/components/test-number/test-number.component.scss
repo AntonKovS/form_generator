@@ -1,0 +1,44 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.number {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .number-label {
+    @include label;
+  }
+
+  .input-inputs-70 {
+    width: 70px;
+
+    input {
+      width: 100%;
+      font-family: 'PTSans', sans-serif;
+      font-size: 17px;
+      color: $main-text-color;
+      box-sizing: border-box;
+      border: 1px solid $border-color;
+      border-radius: 3px;
+      padding: 10px 15px;
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+      }
+    }
+  }
+
+  .number-arrows {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+

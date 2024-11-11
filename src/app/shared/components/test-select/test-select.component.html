@@ -1,0 +1,29 @@
+<section class="select" *ngIf="field && field.id && field.viewType && field.choices.length > 0">
+    <div class="select-label">{{field.label}}<span *ngIf="field.required">*</span></div>
+    <div class="select-input for-ignore-closing" (click)="toggleBodyOpen()" [class.open]="bodyOpen">
+        <form class="select-head for-ignore-closing" [class.grayBackground]="grayBackground" [formGroup]="selForm">
+            <input class="for-ignore-closing" type="text" name="{{field.label}}" placeholder="{{chosenOption}}"
+                   [formControlName]="fieldIdString" [value]="chosenOption"
+                   readonly [ngStyle]="{'border-color': (selForm.get(fieldIdString)?.invalid
+                         && (selForm.get(fieldIdString)?.dirty || selForm.get(fieldIdString)?.touched)) ? 'red' : ''}">
+            <svg *ngIf="!bodyOpen" class="for-ignore-closing" width="16" height="9" viewBox="0 0 16 9" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path class="for-ignore-closing" d="M15.1421 1.07107L8.07104 8.14214L0.999977 1.07107" stroke="black"/>
+            </svg>
+            <svg *ngIf="bodyOpen" width="16" height="9" viewBox="0 0 16 9" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path class="for-ignore-closing" d="M15.1421 8.07105L8.07104 0.999985L0.999977 8.07105" stroke="black"/>
+            </svg>
+        </form>
+        <div class="select-body for-ignore-closing">
+            <div class="select-body-item" *ngFor="let option of field.choices"
+                 [class.active]="chosenOption === option.option"
+                 [class.cut]="highlightOrCut === 'cut' && chosenOption === option.option"
+                 (click)="chooseOption(option.option)">{{option.option}}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

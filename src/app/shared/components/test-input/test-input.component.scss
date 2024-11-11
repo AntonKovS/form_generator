@@ -1,0 +1,87 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.input {
+  .input-single, .input-double {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .input-label {
+      @include label;
+      align-self: start;
+      margin-top: 11px;
+    }
+
+    .input-inputs-500 {
+      width: 500px;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      input {
+        width: 100%;
+        font-family: 'PTSans', sans-serif;
+        font-size: 17px;
+        color: $main-text-color;
+        box-sizing: border-box;
+        border: 1px solid $border-color;
+        border-radius: 3px;
+        padding: 10px 15px;
+      }
+    }
+
+    .input-inputs-group {
+      .input-inputs-300 {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 15px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        input {
+          width: 300px;
+          font-family: 'PTSans', sans-serif;
+          font-size: 17px;
+          color: $main-text-color;
+          box-sizing: border-box;
+          border: 1px solid $border-color;
+          border-radius: 3px;
+          padding: 10px 15px;
+
+          input::placeholder {
+            color: #9D9D9D;
+          }
+        }
+
+        .input-manage {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+
+          .input-manage-close, .input-manage-add {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            margin-left: 15px;
+            cursor: pointer;
+
+            span {
+              margin-left: 7px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .input-comment {
+    color: #9D9D9D;
+    margin: -6px 0 15px 157px;
+  }
+}

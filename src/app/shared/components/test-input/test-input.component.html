@@ -1,0 +1,40 @@
+<section class="input" *ngIf="field && field.id && field.viewType">
+  <div class="input-single" *ngIf="field.viewType === 'single'">
+    <div class="input-label">{{field.label}}<span *ngIf="field.required">*</span></div>
+    <form class="input-inputs-500" [formGroup]="inpForm">
+      <input type="text" placeholder="{{field.placeholder}}" [formControlName]="fieldIdString"
+             [value]="valueForSingleInput"
+             [ngStyle]="{'border-color': (inpForm.get(fieldIdString)?.invalid
+                    && (inpForm.get(fieldIdString)?.dirty || inpForm.get(fieldIdString)?.touched)) ? 'red' : ''}">
+    </form>
+  </div>
+  <div class="input-double" *ngIf="field.viewType === 'double'">
+    <div class="input-label">{{field.label}}<span *ngIf="field.required">*</span></div>
+    <div class="input-inputs-group">
+      <form class="input-inputs-300" *ngFor="let choice of choices; let i = index" [formGroup]="inpDoubleForm">
+        <input type="text" placeholder="{{field.placeholder}}" [formControlName]="fieldIdString + '/' + choice.value"
+               [value]="choice.option" (change)="changeInputValue(inpDouble.value, choice.value)" #inpDouble
+               [ngStyle]="{'border-color': (inpDoubleForm.get(fieldIdString + '/' + choice.value)?.invalid
+                     && (inpDoubleForm.get(fieldIdString + '/' + choice.value)?.dirty || inpDoubleForm.get(fieldIdString + '/' + choice.value)?.touched)) ? 'red' : ''}">
+        <div class="input-manage">
+          <div class="input-manage-close" (click)="closeInput(choice.value)">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="13" cy="13" r="13" fill="#FC6363"/>
+              <path d="M8.05029 17.9498L17.9498 8.05027" stroke="white"/>
+              <path d="M8.05029 8.05023L17.9498 17.9497" stroke="white"/>
+            </svg>
+          </div>
+          <div class="input-manage-add" *ngIf="choices.length === i+1" (click)="addInput()">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="13" cy="13" r="12.5" fill="white" stroke="black"/>
+              <path d="M6 13H20" stroke="black"/>
+              <path d="M13 6L13 20" stroke="black"/>
+            </svg>
+            <span>Добавить еще</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="input-comment" *ngIf="field.viewType === 'double'">Укажите заведения, в которых вы учились.</div>
+</section>

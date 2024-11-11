@@ -1,0 +1,12 @@
+<form class="form" [formGroup]="testForm">
+  <div class="container">
+    <h1>Анкета</h1>
+    <div *ngFor="let field of formStructure" [id]="field.id">
+      <test-input *ngIf="field.inputType === 'input'" [field]="field"></test-input>
+      <test-select *ngIf="field.inputType === 'select'" [field]="field"></test-select>
+      <test-number *ngIf="field.inputType === 'number'" [field]="field"></test-number>
+      <test-checkbox *ngIf="field.inputType === 'checkbox'" [field]="field"></test-checkbox>
+    </div>
+    <button class="button" (click)="submitForm()" type="button" [ngClass]="!(testForm.dirty && testForm.valid) ? 'disabled' : ''">Отправить</button>
+  </div>
+</form>
